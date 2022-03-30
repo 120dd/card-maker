@@ -9,6 +9,10 @@ main {
     justify-content: center;
 }
 
+ul {
+    list-style: none;
+}
+
 .contents {
     width: 30rem;
     flex-direction: column;
@@ -22,6 +26,16 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 0.5rem;
+    position: relative;
+}
+
+.header button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background-color: white;
+    padding: 0.1rem;
+    border-radius: 4px;
 }
 
 .loginPage img {
@@ -46,11 +60,11 @@ section h2 {
     margin-bottom: 2rem;
 }
 
-section button:nth-child(2) {
+section button:nth-child(1) {
     margin-bottom: 0.5rem;
 }
 
-button {
+section button {
     background-color: white;
     padding: 0.5rem 12rem;
     border-radius: 20px;
