@@ -1,4 +1,4 @@
-@value makerNavy from '../common/color.css';
+@value makerNavy from '../../common/color.css';
 
 main {
     background-color: grey;
