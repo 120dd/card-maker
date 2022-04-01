@@ -8,7 +8,7 @@ const authServise = new AuthService();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App authServise={authServise}/>
+          <App authServise={authServise}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

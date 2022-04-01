@@ -1,0 +1,30 @@
+@value makerNavy from "../../common/color.css";
+
+.header {
+    background-color: makerNavy;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.header button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background-color: white;
+    padding: 0.1rem;
+    border-radius: 4px;
+}
+
+.header_name {
+    font-size: 2rem;
+    color: white;
+}
+
+.header img {
+    width: 4rem;
+    height: auto;
+}

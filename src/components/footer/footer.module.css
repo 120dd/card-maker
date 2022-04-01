@@ -1,0 +1,9 @@
+@value makerNavy from '../../common/color.css';
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: makerNavy;
+    color: white;
+    padding: 1rem;
+}
