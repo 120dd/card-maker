@@ -23,9 +23,9 @@ const LoginPage = ({authservice, setIsSignup, isSignup}) => {
         <main className={styles.loginPage}>
             <div className={styles.contents}>
                 <Header isSignup={isSignup}/>
-                <section>
+                <section className={styles.section}>
                     <h2>Login</h2>
-                    <ul>
+                    <ul className={styles.buttons}>
                         <li>
                             <Link to="/home">
                                 <button onClick={loginGoogle}>

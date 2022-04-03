@@ -1,0 +1,10 @@
+.cardMaker {
+    flex-basis: 50%;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}

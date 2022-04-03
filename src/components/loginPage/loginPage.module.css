@@ -11,7 +11,7 @@
     background-color: makerGrey;
 }
 
-ul {
+.buttons {
     list-style: none;
 }
 
@@ -21,7 +21,7 @@ ul {
     align-items: center;
 }
 
-section {
+.section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,16 +29,16 @@ section {
     background-color: white;
 }
 
-section h2 {
+.section h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
 }
 
-section button:nth-child(1) {
+.section button:nth-child(1) {
     margin-bottom: 0.5rem;
 }
 
-section button {
+.section button {
     background-color: white;
     padding: 0.5rem 12rem;
     border-radius: 20px;

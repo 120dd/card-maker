@@ -6,15 +6,15 @@ import styles from "./maker.module.css";
 import Cardmaker from "../cardmaker/cardmaker";
 import CardPreview from "../cardPreview/cardPreview";
 
-const Maker = ({isSignup}) => {
+const Maker = ({isSignup,cards}) => {
     const location = useLocation();
     return (
         <div className={styles.maker}>
             <Header isSignup={isSignup}/>
             <div className={styles.container}>
                 <section className={styles.contents}>
-                    <Cardmaker />
-                    <CardPreview />
+                    <Cardmaker cards={cards} />
+                    <CardPreview cards={cards} />
                 </section>
             </div>
             <Footer/>

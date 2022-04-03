@@ -12,19 +12,11 @@
 }
 
 .container .contents {
-    border: black solid 2px;
-    flex-direction: row;
-    justify-content: space-around;
+    display: flex;
 }
 
-/*.contents {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*@media screen and (min-width: 62rem) {*/
-/*    .container {*/
-/*        flex-direction: row;*/
-/*        justify-content: space-around;*/
-/*    }*/
-/*}*/
+@media screen and (max-width: mediaQuery){
+    .contents {
+        flex-direction: column;
+    }
+}

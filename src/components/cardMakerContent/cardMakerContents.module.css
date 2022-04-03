@@ -1,0 +1,19 @@
+.tableList {
+    margin-bottom: 2rem;
+}
+
+.table {
+    display: table;
+    width: 100%;
+    background-color: grey;
+    text-align: center;
+}
+
+.table_row {
+    background-color: white;
+    table-layout: fixed;
+}
+
+.table_tiem {
+    table-layout: fixed;
+}
