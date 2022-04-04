@@ -1,19 +1,45 @@
-.tableList {
-    margin-bottom: 2rem;
+.form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
 }
 
-.table {
-    display: table;
+.firstRow,
+.secondRow,
+.thirdRow,
+.fourthRow {
     width: 100%;
-    background-color: grey;
+}
+
+.firstRow input,
+.firstRow select {
+    width: 33.33%;
     text-align: center;
 }
 
-.table_row {
-    background-color: white;
-    table-layout: fixed;
+.secondRow input {
+    width: 50%;
+    text-align: center;
 }
 
-.table_tiem {
-    table-layout: fixed;
+.thirdRow textarea {
+    width: 100%;
+    padding: 0.5rem;
 }
+
+.fourthRow button {
+    width: 50%;
+    height: 2rem;
+}
+
+.fourthRow button:first-child {
+    background-color: darkcyan;
+    color: white;
+}
+
+.fourthRow button:last-child {
+    background-color: brown;
+    color: white;
+}
+

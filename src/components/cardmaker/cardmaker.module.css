@@ -1,5 +1,9 @@
+@value mediaQuery from '../../common/size.css';
+@value makerNavy from '../../common/color.css';
+
 .cardMaker {
     flex-basis: 50%;
+    border-right: gray solid 2px;
 }
 
 .title {
@@ -7,4 +11,11 @@
     text-align: center;
     font-size: 1.5rem;
     margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: mediaQuery){
+    .cardMaker {
+        border-bottom: solid makerNavy 3px;
+    }
 }

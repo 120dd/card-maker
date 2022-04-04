@@ -1,11 +1,19 @@
 import React from 'react';
 import styles from './cardPreview.module.css';
+import PreviewContent from "../previewContent/previewContent";
 
-const CardPreview = (props) => {
+const CardPreview = ({cards}) => {
     return (
-        <article className={styles.cardPreview}>
+        <section className={styles.cardPreview}>
             <h1 className={styles.title}>Card Preview</h1>
-        </article>
+            <ul className={styles.previewList}>
+                {cards.map((card)=>{
+                    return(
+                        <PreviewContent key={card.number} card={card} />
+                    )
+                })}
+            </ul>
+        </section>
     )
 };
 

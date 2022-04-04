@@ -12,7 +12,7 @@ export default function App({authServise}) {
                 number: 1,
                 name: 'Chris',
                 email: 'abc@gmail.com',
-                color: 'dark',
+                color: 'black',
                 workplace: 'porche',
                 position: 'coder',
                 coments: '열심히 공부중',
@@ -28,7 +28,40 @@ export default function App({authServise}) {
                 position: 'designer',
                 coments: '세계 최고의 디자이너',
                 img: default_logo,
-            }
+            },
+        {
+            number: 3,
+            name: 'Chris',
+            email: 'abc@gmail.com',
+            color: 'red',
+            workplace: 'porche',
+            position: 'coder',
+            coments: '열심히 공부중',
+            img: default_logo,
+
+        },
+        {
+            number: 4,
+            name: 'Chris',
+            email: 'abc@gmail.com',
+            color: 'black',
+            workplace: 'porche',
+            position: 'coder',
+            coments: '열심히 공부중',
+            img: default_logo,
+
+        },
+        {
+            number: 5,
+            name: 'Chris',
+            email: 'abc@gmail.com',
+            color: 'black',
+            workplace: 'porche',
+            position: 'coder',
+            coments: '열심히 공부중',
+            img: default_logo,
+
+        },
         ]
     );
 

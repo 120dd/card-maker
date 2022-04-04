@@ -4,14 +4,14 @@ import CardMakerContent from "../cardMakerContent/cardMakerContent";
 
 const Cardmaker = ({cards}) => {
     console.log(cards);
-    return(
+    return (
         <article className={styles.cardMaker}>
             <h1 className={styles.title}>Card Maker</h1>
             <ul>
-                {cards.map((card)=>{
-                    return(
-                        <CardMakerContent key={card.number} card={card} />
-                    )
+                {cards.map((card) => {
+                        return (
+                            <CardMakerContent key={card.number} card={card}/>
+                        )
                     }
                 )}
             </ul>

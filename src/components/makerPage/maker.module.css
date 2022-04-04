@@ -13,6 +13,7 @@
 
 .container .contents {
     display: flex;
+    height: 100%;
 }
 
 @media screen and (max-width: mediaQuery){
