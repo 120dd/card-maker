@@ -11,20 +11,6 @@
     margin-bottom: 0;
 }
 
-.black {
-    background-color: black;
-    color: white;
-}
-
-.pink {
-    background-color: pink;
-}
-
-.red {
-    background-color: darkred;
-    color: white;
-}
-
 .previewIMG {
     width: 6rem;
     margin-right: 1rem;

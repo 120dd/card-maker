@@ -9,7 +9,7 @@ export default function App({authServise}) {
     const [isSignup, setIsSignup] = useState(null);
     const [cards, setCards] = useState([
             {
-                number: 1,
+                id: 1,
                 name: 'Chris',
                 email: 'abc@gmail.com',
                 color: 'black',
@@ -17,10 +17,9 @@ export default function App({authServise}) {
                 position: 'coder',
                 coments: '열심히 공부중',
                 img: default_logo,
-
             },
             {
-                number: 2,
+                id: 2,
                 name: 'jh',
                 email: 'jhjh@gmail.com',
                 color: 'pink',
@@ -29,39 +28,16 @@ export default function App({authServise}) {
                 coments: '세계 최고의 디자이너',
                 img: default_logo,
             },
-        {
-            number: 3,
-            name: 'Chris',
-            email: 'abc@gmail.com',
-            color: 'red',
-            workplace: 'porche',
-            position: 'coder',
-            coments: '열심히 공부중',
-            img: default_logo,
-
-        },
-        {
-            number: 4,
-            name: 'Chris',
-            email: 'abc@gmail.com',
-            color: 'black',
-            workplace: 'porche',
-            position: 'coder',
-            coments: '열심히 공부중',
-            img: default_logo,
-
-        },
-        {
-            number: 5,
-            name: 'Chris',
-            email: 'abc@gmail.com',
-            color: 'black',
-            workplace: 'porche',
-            position: 'coder',
-            coments: '열심히 공부중',
-            img: default_logo,
-
-        },
+            {
+                id: 3,
+                name: 'Chris',
+                email: 'abc@gmail.com',
+                color: 'red',
+                workplace: 'porche',
+                position: 'coder',
+                coments: '열심히 공부중',
+                img: default_logo,
+            },
         ]
     );
 
@@ -85,6 +61,7 @@ export default function App({authServise}) {
                         <Maker
                             isSignup={isSignup}
                             cards={cards}
+                            setCards={setCards}
                         />
                     </Route>
                 </Switch>
