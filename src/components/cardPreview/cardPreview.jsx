@@ -13,7 +13,7 @@ const CardPreview = ({cards}) => {
                         <PreviewContent key={card.id} card={card}/>
                     )
                 })}
-                <PreviewForm cards={cards} />
+                {/*<PreviewForm cards={cards} />*/}
             </ul>
         </section>
     )
