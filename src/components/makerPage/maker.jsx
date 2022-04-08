@@ -11,7 +11,8 @@ const Maker = ({isSignup, setIsSignup, authServise}) => {
 
     const history = useHistory();
 
-    useEffect(() => isSignup === false ? history.push('/') : console.log('로그인되었습니다'), [])
+    // useEffect(() => isSignup === false ? history.push('/') : console.log('로그인 중!'), [isSignup])
+    // isSignup === null ? history.push('/') : console.log('로그인 중!');
     const [cards, setCards] = useState([
             {
                 id: 1,
@@ -22,6 +23,7 @@ const Maker = ({isSignup, setIsSignup, authServise}) => {
                 position: 'coder',
                 comments: '열심히 공부중',
                 img: default_logo,
+                imgFileName: 'no image',
             },
             {
                 id: 2,
@@ -32,6 +34,7 @@ const Maker = ({isSignup, setIsSignup, authServise}) => {
                 position: 'designer',
                 comments: '세계 최고의 디자이너',
                 img: default_logo,
+                imgFileName: 'no image',
             },
             {
                 id: 3,
@@ -42,6 +45,7 @@ const Maker = ({isSignup, setIsSignup, authServise}) => {
                 position: 'coder',
                 comments: '열심히 공부중',
                 img: default_logo,
+                imgFileName: 'no image',
             },
         ]
     );

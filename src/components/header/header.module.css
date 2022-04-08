@@ -11,7 +11,7 @@
 }
 
 .header button {
-    position: absolute;
+    /*position: absolute;*/
     right: 1rem;
     top: 1rem;
     background-color: gray;

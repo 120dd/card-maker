@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import styles from './cardMakerContents.module.css';
+import {logDOM} from "@testing-library/react";
 
 const CardMakerContent = ({card, cards, setCards, updateCard}) => {
     const nameRef = useRef();
@@ -8,6 +9,7 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
     const positionRef = useRef();
     const emailRef = useRef();
     const commentsRef = useRef();
+    const inputFile = useRef();
 
     const onDelete = (e) => {
         let newCards = cards.filter(data => data.id !== card.id);
@@ -15,11 +17,27 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
     }
 
     const onChange = (e) => {
-        e.currentTarget && e.preventDefault();
+        e.preventDefault();
         const newCard = {...card,[e.currentTarget.name]: e.currentTarget.value};
         updateCard(newCard);
     }
 
+    const onUpload = (e) => {
+        e.preventDefault();
+        inputFile.current.click();
+    }
+
+    // const handleUpload = async (e) => {
+    //     await console.log(e);
+    // }
+
+    // async function handleUpload(e) {
+    //     console.log(e);
+    // }
+
+    const onChangeImg = (e) => {
+        console.log(e);
+    }
 
     return (
         <li className={styles.tableList}>
@@ -41,7 +59,18 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
                     <textarea onChange={onChange} ref={commentsRef} name="comments" value={card.comments}/>
                 </div>
                 <div className={styles.fourthRow}>
-                    <button>image upload</button>
+                    <button>
+                        <div onClick={onUpload} className={styles.uploadLabel}>{card.imgFileName}</div>
+                        <input
+                            name="img"
+                            type="file"
+                            accept="image/jpeg, image/png, image/jpg"
+                            ref={inputFile}
+                            className="displayNone"
+                            // onClick={handleUpload}
+                            onChange={onChangeImg}
+                        />
+                    </button>
                     <button onClick={onDelete}>Delete</button>
                 </div>
             </form>
