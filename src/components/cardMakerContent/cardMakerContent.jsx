@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import styles from './cardMakerContents.module.css';
-import {logDOM} from "@testing-library/react";
+import {Cloudinary} from "@cloudinary/url-gen/instance/Cloudinary";
 
 const CardMakerContent = ({card, cards, setCards, updateCard}) => {
     const nameRef = useRef();
@@ -27,21 +27,26 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
         inputFile.current.click();
     }
 
-    // const handleUpload = async (e) => {
-    //     await console.log(e);
-    // }
-
-    // async function handleUpload(e) {
-    //     console.log(e);
-    // }
-
     const onChangeImg = (e) => {
-        console.log(e);
+        e.preventDefault();
+        const targetName = e.currentTarget.name;
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = (e) => {
+            const base64 = reader.result;
+            const newCard = {...card,[targetName]: base64};
+            updateCard(newCard);
+        }
+        const cld = new Cloudinary({
+            cloud: {
+                cloudName: 'deayfdmjf'
+            }
+        })
     }
 
     return (
         <li className={styles.tableList}>
-            <form className={styles.form} >
+            <form className={styles.form} onSubmit={(e)=>e.preventDefault()} >
                 <div className={styles.firstRow}>
                     <input onChange={onChange} ref={nameRef} type="text" name="name" value={card.name}/>
                     <input onChange={onChange} ref={workPlaceRef} type="text" name="workplace" value={card.workplace}/>
@@ -67,7 +72,6 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
                             accept="image/jpeg, image/png, image/jpg"
                             ref={inputFile}
                             className="displayNone"
-                            // onClick={handleUpload}
                             onChange={onChangeImg}
                         />
                     </button>
