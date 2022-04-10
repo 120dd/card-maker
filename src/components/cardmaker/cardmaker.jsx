@@ -3,7 +3,7 @@ import styles from "./cardmaker.module.css";
 import CardMakerContent from "../cardMakerContent/cardMakerContent";
 import AddForm from "../addForm/addForm";
 
-const Cardmaker = ({cards, setCards}) => {
+const Cardmaker = ({cards, setCards, dataControl,}) => {
     console.log(cards);
 
     const addCard = (card) => {
@@ -30,12 +30,17 @@ const Cardmaker = ({cards, setCards}) => {
                                 cards={cards}
                                 setCards={setCards}
                                 updateCard={updateCard}
+                                dataControl={dataControl}
                             />
                         )
                     }
                 )}
                 {/*<AddForm cards={cards} setCards={setCards} />*/}
-                <AddForm cards={cards} addCard={addCard} />
+                <AddForm
+                    cards={cards}
+                    addCard={addCard}
+                    dataControl={dataControl}
+                />
             </ul>
         </article>
     )

@@ -1,8 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import styles from './cardMakerContents.module.css';
-import {Cloudinary} from "@cloudinary/url-gen/instance/Cloudinary";
 
-const CardMakerContent = ({card, cards, setCards, updateCard}) => {
+const CardMakerContent = ({card, cards, setCards, updateCard, dataControl}) => {
+    const [loading, setLoading] = useState(false);
     const nameRef = useRef();
     const workPlaceRef = useRef();
     const colorRef = useRef();
@@ -18,7 +18,7 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
 
     const onChange = (e) => {
         e.preventDefault();
-        const newCard = {...card,[e.currentTarget.name]: e.currentTarget.value};
+        const newCard = {...card, [e.currentTarget.name]: e.currentTarget.value};
         updateCard(newCard);
     }
 
@@ -27,26 +27,21 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
         inputFile.current.click();
     }
 
-    const onChangeImg = (e) => {
+    const onChangeImg = async (e) => {
         e.preventDefault();
-        const targetName = e.currentTarget.name;
-        let reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onloadend = (e) => {
-            const base64 = reader.result;
-            const newCard = {...card,[targetName]: base64};
-            updateCard(newCard);
-        }
-        const cld = new Cloudinary({
-            cloud: {
-                cloudName: 'deayfdmjf'
-            }
-        })
+        setLoading(true);
+        const img = inputFile.current.files[0];
+        const imgName = inputFile.current.files[0].name;
+        const result = await dataControl.cldImgUpload(img);
+        setLoading(false);
+        const url = result.data.url;
+        const newCard = {...card, ["img"]: url, [`imgFileName`]: imgName};
+        updateCard(newCard);
     }
 
     return (
         <li className={styles.tableList}>
-            <form className={styles.form} onSubmit={(e)=>e.preventDefault()} >
+            <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
                 <div className={styles.firstRow}>
                     <input onChange={onChange} ref={nameRef} type="text" name="name" value={card.name}/>
                     <input onChange={onChange} ref={workPlaceRef} type="text" name="workplace" value={card.workplace}/>
@@ -65,11 +60,13 @@ const CardMakerContent = ({card, cards, setCards, updateCard}) => {
                 </div>
                 <div className={styles.fourthRow}>
                     <button>
-                        <div onClick={onUpload} className={styles.uploadLabel}>{card.imgFileName}</div>
+                        <div onClick={onUpload} className={styles.uploadLabel}>
+                            {loading === true ? "로딩중..." : card.imgFileName}
+                        </div>
                         <input
                             name="img"
                             type="file"
-                            accept="image/jpeg, image/png, image/jpg"
+                            accept="image/*"
                             ref={inputFile}
                             className="displayNone"
                             onChange={onChangeImg}

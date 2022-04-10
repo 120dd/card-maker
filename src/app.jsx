@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Maker from "./components/makerPage/maker";
 import {useState} from "react";
 
-export default function App({authServise}) {
+export default function App({authServise, dataControl}) {
     const [isSignup, setIsSignup] = useState(null);
 
     const githubClick = () => {
@@ -24,7 +24,12 @@ export default function App({authServise}) {
                         />
                     </Route>
                     <Route path="/maker">
-                        <Maker authServise={authServise} isSignup={isSignup} setIsSignup={setIsSignup} />
+                        <Maker
+                            authServise={authServise}
+                            isSignup={isSignup}
+                            setIsSignup={setIsSignup}
+                            dataControl={dataControl}
+                        />
                     </Route>
                 </Switch>
             </div>

@@ -1,34 +1,59 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
+import default_logo from "../../assets/default_logo.png";
 import styles from "../cardMakerContent/cardMakerContents.module.css";
 
-const AddForm = ({cards, setCards, addCard}) => {
+const AddForm = ({cards, setCards, addCard, dataControl}) => {
+    const [isImgUploaded, setIsImgUploaded] = useState(false);
+    const [imgName, setImgName] = useState('no image');
     const inputRef = useRef([]);
     const formRef = useRef();
+    const imgRef = useRef();
 
-    const uniqueId = () => {
-        return Date.now();
-    }
-
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
+        let imgUrl = default_logo;
 
-        const newCard = {
-            id: uniqueId(),
-            name: inputRef.current[0].value,
-            workplace: inputRef.current[1].value,
-            color: inputRef.current[2].value,
-            comments: inputRef.current[3].value,
-            email: inputRef.current[4].value,
-            position: inputRef.current[5].value,
-            img: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPo",
-        }
-
-        addCard(newCard);
-        formRef.current.reset();
+        isImgUploaded !== false && await uploadImg()
+            .then(uploadInfo => {
+            console.log(uploadInfo);
+            imgUrl = uploadInfo.data.url
+            })
+            const newCard = {
+                id: Date.now(),
+                name: inputRef.current[0].value,
+                workplace: inputRef.current[1].value,
+                color: inputRef.current[2].value,
+                comments: inputRef.current[3].value,
+                email: inputRef.current[4].value,
+                position: inputRef.current[5].value,
+                img: imgUrl,
+                imgFileName: imgName,
+            }
+            addCard(newCard);
+            formRef.current.reset();
+            setIsImgUploaded(false);
+            setImgName('no image');
     }
 
     function controlSubmit(e) {
         e.preventDefault();
+    }
+
+    const uploadImg = async (e) => {
+        const img = imgRef.current.files[0];
+        return await dataControl.cldImgUpload(img)
+    }
+
+    const onClickUpload = (e) => {
+        e.preventDefault();
+        imgRef.current.click();
+    }
+
+    const chageImgName = (e) => {
+        e.preventDefault();
+        const imgName = imgRef.current.files[0].name;
+        setImgName(imgName);
+        setIsImgUploaded(true);
     }
 
     return (
@@ -50,7 +75,19 @@ const AddForm = ({cards, setCards, addCard}) => {
                 <textarea ref={elem => (inputRef.current[5] = elem)} name="comments" placeholder="coment를 적으세요"/>
             </div>
             <div className={styles.fourthRow}>
-                <button>image upload</button>
+                <button>
+                    <div onClick={onClickUpload} className={styles.uploadLabel}>
+                        {isImgUploaded === false ? '이미지 업로드': imgName}
+                    </div>
+                    <input
+                        name="img"
+                        type="file"
+                        accept="image/*"
+                        ref={imgRef}
+                        className="displayNone"
+                        onChange={chageImgName}
+                    />
+                </button>
                 <button onClick={onSubmit}>Add</button>
             </div>
         </form>
