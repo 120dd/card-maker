@@ -1,8 +1,9 @@
 import React, {useRef, useState} from 'react';
 import default_logo from "../../assets/default_logo.png";
 import styles from "../cardMakerContent/cardMakerContents.module.css";
+import DataControl from "../../survices/dataControl";
 
-const AddForm = ({cards, setCards, addCard, dataControl}) => {
+const AddForm = ({cards, setCards, addCard, dataControl, loginedUID}) => {
     const [isImgUploaded, setIsImgUploaded] = useState(false);
     const [imgName, setImgName] = useState('no image');
     const inputRef = useRef([]);
@@ -15,24 +16,24 @@ const AddForm = ({cards, setCards, addCard, dataControl}) => {
 
         isImgUploaded !== false && await uploadImg()
             .then(uploadInfo => {
-            console.log(uploadInfo);
-            imgUrl = uploadInfo.data.url
+                console.log(uploadInfo);
+                imgUrl = uploadInfo.data.url
             })
-            const newCard = {
-                id: Date.now(),
-                name: inputRef.current[0].value,
-                workplace: inputRef.current[1].value,
-                color: inputRef.current[2].value,
-                comments: inputRef.current[3].value,
-                email: inputRef.current[4].value,
-                position: inputRef.current[5].value,
-                img: imgUrl,
-                imgFileName: imgName,
-            }
-            addCard(newCard);
-            formRef.current.reset();
-            setIsImgUploaded(false);
-            setImgName('no image');
+        const newCard = {
+            id: Date.now(),
+            name: inputRef.current[0].value,
+            workplace: inputRef.current[1].value,
+            color: inputRef.current[2].value,
+            comments: inputRef.current[3].value,
+            email: inputRef.current[4].value,
+            position: inputRef.current[5].value,
+            img: imgUrl,
+            imgFileName: imgName,
+        }
+        addCard(newCard);
+        formRef.current.reset();
+        setIsImgUploaded(false);
+        setImgName('no image');
     }
 
     function controlSubmit(e) {
@@ -77,7 +78,7 @@ const AddForm = ({cards, setCards, addCard, dataControl}) => {
             <div className={styles.fourthRow}>
                 <button>
                     <div onClick={onClickUpload} className={styles.uploadLabel}>
-                        {isImgUploaded === false ? '이미지 업로드': imgName}
+                        {isImgUploaded === false ? '이미지 업로드' : imgName}
                     </div>
                     <input
                         name="img"

@@ -4,7 +4,7 @@ import {Link, useHistory} from "react-router-dom";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 
-const LoginPage = ({authservice, setIsSignup, isSignup}) => {
+const LoginPage = ({authservice, setIsSignup, isSignup, setLoginedUID, loginedUID}) => {
     const history = useHistory();
 
     const loginGoogle = () => {
@@ -12,6 +12,7 @@ const LoginPage = ({authservice, setIsSignup, isSignup}) => {
             .then((result) => {
                 console.log(result);
                 setIsSignup(true);
+                setLoginedUID(result.user.uid);
                 return history.push("/maker", {uid: result.user.uid});
             })
             .catch((err) => {

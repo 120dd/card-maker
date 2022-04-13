@@ -1,4 +1,5 @@
 import axios from "axios";
+import {getDatabase, ref, set} from "firebase/database";
 
 
 class DataControl {
@@ -28,7 +29,13 @@ class DataControl {
             .catch(err=>alert(err))
     }
 
-
+    writeUserData(uid, data) {
+        const db = getDatabase();
+        set(ref(db, 'users/'+ uid),{
+            uid: uid,
+            data: data,
+        })
+    }
 }
 
 export default DataControl;

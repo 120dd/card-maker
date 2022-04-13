@@ -1,8 +1,9 @@
 import React from 'react';
 import logo from "../../assets/logo.png";
 import styles from "./header.module.css";
+import {firebaseAuthService, firebaseDataservice} from "../../survices/firebase";
 
-const Header = ({isSignup, setIsSignup, authServise }) => {
+const Header = ({isSignup, setIsSignup, authServise, loginedUID }) => {
 
     const onLogout = () => {
         authServise.logoutWithGoogle()
@@ -12,7 +13,9 @@ const Header = ({isSignup, setIsSignup, authServise }) => {
 
 
     // const onCheck = () => authServise.checkUser();
-    const onCheck = () => console.log(isSignup);
+    const onCheck = () => {
+        console.log(firebaseAuthService.currentUser);
+    }
 
     return (
         <header className={styles.header}>
@@ -20,6 +23,7 @@ const Header = ({isSignup, setIsSignup, authServise }) => {
             <img src={logo} alt='logo' className={styles.header_logo}/>
             <h1 className={styles.header_name}>Business Card Maker</h1>
             <button onClick={onCheck}>ooo</button>
+            <span>{loginedUID}</span>
         </header>
     )
 };

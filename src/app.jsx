@@ -1,15 +1,26 @@
 import './app.css';
 import LoginPage from "./components/loginPage/loginPage";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, useHistory} from "react-router-dom";
 import Maker from "./components/makerPage/maker";
 import {useState} from "react";
+import {firebaseAuthService} from "./survices/firebase";
 
 export default function App({authServise, dataControl}) {
     const [isSignup, setIsSignup] = useState(null);
+    const [loginedUID, setLoginedUID] = useState();
 
     const githubClick = () => {
         console.log('ih github');
     }
+
+    const history = useHistory();
+
+    firebaseAuthService.onAuthStateChanged(
+        // () =>{
+        //     console.log('ih')
+        //     firebaseAuthService.currentUser === null && history.push("home")
+        // }
+    )
 
     return (
         <BrowserRouter>
@@ -17,6 +28,8 @@ export default function App({authServise, dataControl}) {
                 <Switch>
                     <Route exact path={['/', '/home']}>
                         <LoginPage
+                            loginedUID={loginedUID}
+                            setLoginedUID={setLoginedUID}
                             authservice={authServise}
                             githubClick={githubClick}
                             setIsSignup={setIsSignup}
@@ -29,6 +42,7 @@ export default function App({authServise, dataControl}) {
                             isSignup={isSignup}
                             setIsSignup={setIsSignup}
                             dataControl={dataControl}
+                            loginedUID={loginedUID}
                         />
                     </Route>
                 </Switch>

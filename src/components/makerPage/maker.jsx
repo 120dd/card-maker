@@ -7,7 +7,7 @@ import Cardmaker from "../cardmaker/cardmaker";
 import CardPreview from "../cardPreview/cardPreview";
 import default_logo from "../../assets/default_logo.png";
 
-const Maker = ({isSignup, setIsSignup, authServise, dataControl}) => {
+const Maker = ({isSignup, setIsSignup, authServise, dataControl, loginedUID}) => {
 
     const history = useHistory();
 
@@ -49,10 +49,11 @@ const Maker = ({isSignup, setIsSignup, authServise, dataControl}) => {
             },
         ]
     );
-    const location = useLocation();
+    // const location = useLocation();
     return (
         <div className={styles.maker}>
             <Header
+                loginedUID={loginedUID}
                 authServise={authServise}
                 isSignup={isSignup}
                 setIsSignup={setIsSignup}
@@ -63,6 +64,7 @@ const Maker = ({isSignup, setIsSignup, authServise, dataControl}) => {
                         cards={cards}
                         setCards={setCards}
                         dataControl={dataControl}
+                        loginedUID={loginedUID}
                     />
                     <CardPreview cards={cards}/>
                 </section>
