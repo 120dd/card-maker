@@ -3,7 +3,6 @@ import LoginPage from "./components/loginPage/loginPage";
 import {BrowserRouter, Route, Switch, useHistory} from "react-router-dom";
 import Maker from "./components/makerPage/maker";
 import {useState} from "react";
-import {firebaseAuthService} from "./survices/firebase";
 
 export default function App({authServise, dataControl}) {
     const [isSignup, setIsSignup] = useState(null);
@@ -15,12 +14,12 @@ export default function App({authServise, dataControl}) {
 
     const history = useHistory();
 
-    firebaseAuthService.onAuthStateChanged(
-        // () =>{
-        //     console.log('ih')
-        //     firebaseAuthService.currentUser === null && history.push("home")
-        // }
-    )
+    // firebaseAuthService.onAuthStateChanged(
+    //     // () =>{
+    //     //     console.log('ih')
+    //     //     firebaseAuthService.currentUser === null && history.push("home")
+    //     // }
+    // )
 
     return (
         <BrowserRouter>
@@ -28,6 +27,7 @@ export default function App({authServise, dataControl}) {
                 <Switch>
                     <Route exact path={['/', '/home']}>
                         <LoginPage
+                            dataControl={dataControl}
                             loginedUID={loginedUID}
                             setLoginedUID={setLoginedUID}
                             authservice={authServise}

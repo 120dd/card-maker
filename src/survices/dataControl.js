@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getDatabase, ref, set} from "firebase/database";
+import {getDatabase, ref, set, onValue} from "firebase/database";
 
 
 class DataControl {
@@ -7,7 +7,7 @@ class DataControl {
         this.cldAPIKey = process.env.REACT_APP_CLOUDUNARY_API_KEY;
     }
 
-    cldImgUpload = async(file) => { //서버에 파일 업로드
+    cldImgUpload = async (file) => { //서버에 파일 업로드
 
         let formData = new FormData();
         formData.append("api_key", this.cldAPIKey);
@@ -18,24 +18,35 @@ class DataControl {
         const cloudName = process.env.REACT_APP_CLOUDUNARY_CLOUD_NAME;
 
         const config = {
-            header: { "Content-Type": "multipart/form-data" }
+            header: {"Content-Type": "multipart/form-data"}
         }
 
         return await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData, config)
-            .then(res=>{
+            .then(res => {
                 // console.log(res);
                 return res;
             })
-            .catch(err=>alert(err))
+            .catch(err => alert(err))
     }
 
     writeUserData(uid, data) {
         const db = getDatabase();
-        set(ref(db, 'users/'+ uid),{
+        set(ref(db, 'users/' + uid), {
             uid: uid,
             data: data,
         })
     }
+
+    readUserData = (uid, callback) => {
+        const db = getDatabase();
+        const userRef = ref(db, `users/${uid}`);
+        onValue(userRef, (snapshot) => {
+            const data = snapshot.val();
+            callback(data);
+        });
+    }
+
+
 }
 
 export default DataControl;

@@ -11,8 +11,15 @@ const Maker = ({isSignup, setIsSignup, authServise, dataControl, loginedUID}) =>
 
     const history = useHistory();
 
-    // useEffect(() => isSignup === false ? history.push('/') : console.log('로그인 중!'), [isSignup])
-    // isSignup === null ? history.push('/') : console.log('로그인 중!');
+    const onCheck = () => {
+        if (isSignup !== true) {
+            authServise.logoutWithGoogle();
+            history.push('/');
+        }
+    }
+
+    useEffect(onCheck, [isSignup]);
+
     const [cards, setCards] = useState([
             {
                 id: 1,
@@ -27,20 +34,20 @@ const Maker = ({isSignup, setIsSignup, authServise, dataControl, loginedUID}) =>
             },
             {
                 id: 2,
-                name: 'jh',
-                email: 'jhjh@gmail.com',
-                color: 'pink',
-                workplace: 'abcMart',
-                position: 'designer',
-                comments: '세계 최고의 디자이너',
+                name: '2Chris',
+                email: 'abc@gmail.com',
+                color: 'black',
+                workplace: 'porche',
+                position: 'coder',
+                comments: '열심히 공부중',
                 img: default_logo,
                 imgFileName: 'no image',
             },
             {
                 id: 3,
-                name: 'Chris',
+                name: '3Chris',
                 email: 'abc@gmail.com',
-                color: 'red',
+                color: 'black',
                 workplace: 'porche',
                 position: 'coder',
                 comments: '열심히 공부중',
@@ -49,10 +56,19 @@ const Maker = ({isSignup, setIsSignup, authServise, dataControl, loginedUID}) =>
             },
         ]
     );
-    // const location = useLocation();
+
+    const getUserInfo = () => {
+         dataControl.readUserData(loginedUID,(res)=>setCards(res.data));
+    }
+
+    useEffect(getUserInfo,[]);
+
+
     return (
         <div className={styles.maker}>
+            <button onClick={getUserInfo}>11</button>
             <Header
+                dataControl={dataControl}
                 loginedUID={loginedUID}
                 authServise={authServise}
                 isSignup={isSignup}

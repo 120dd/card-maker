@@ -1,10 +1,9 @@
-import React from 'react';
 import styles from './loginPage.module.css';
 import {Link, useHistory} from "react-router-dom";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 
-const LoginPage = ({authservice, setIsSignup, isSignup, setLoginedUID, loginedUID}) => {
+const LoginPage = ({authservice, setIsSignup, isSignup, setLoginedUID, loginedUID, dataControl}) => {
     const history = useHistory();
 
     const loginGoogle = () => {
@@ -23,7 +22,7 @@ const LoginPage = ({authservice, setIsSignup, isSignup, setLoginedUID, loginedUI
     return (
         <main className={styles.loginPage}>
             <div className={styles.contents}>
-                <Header isSignup={isSignup}/>
+                <Header dataControl={dataControl} isSignup={isSignup}/>
                 <section className={styles.section}>
                     <h2>Login</h2>
                     <ul className={styles.buttons}>
