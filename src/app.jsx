@@ -8,19 +8,6 @@ export default function App({authServise, dataControl}) {
     const [isSignup, setIsSignup] = useState(null);
     const [loginedUID, setLoginedUID] = useState();
 
-    const githubClick = () => {
-        console.log('ih github');
-    }
-
-    const history = useHistory();
-
-    // firebaseAuthService.onAuthStateChanged(
-    //     // () =>{
-    //     //     console.log('ih')
-    //     //     firebaseAuthService.currentUser === null && history.push("home")
-    //     // }
-    // )
-
     return (
         <BrowserRouter>
             <div className="page">
@@ -31,7 +18,6 @@ export default function App({authServise, dataControl}) {
                             loginedUID={loginedUID}
                             setLoginedUID={setLoginedUID}
                             authservice={authServise}
-                            githubClick={githubClick}
                             setIsSignup={setIsSignup}
                             isSignup={isSignup}
                         />

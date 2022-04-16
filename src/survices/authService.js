@@ -2,10 +2,6 @@ import {firebaseAuthService} from "./firebase";
 import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 
 class AuthService {
-    // loginWithGoogle() {
-    //     const provider = new GoogleAuthProvider();
-    //     return signInWithPopup(firebaseAuthService, provider).;
-    // }
 
     loginWithGoogle() {
         const provider = new GoogleAuthProvider();

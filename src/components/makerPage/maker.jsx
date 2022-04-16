@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useHistory, useLocation} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import styles from "./maker.module.css";
 import Cardmaker from "../cardmaker/cardmaker";
 import CardPreview from "../cardPreview/cardPreview";
-import default_logo from "../../assets/default_logo.png";
 
 const Maker = ({isSignup, setIsSignup, authServise, dataControl, loginedUID}) => {
 
@@ -20,53 +19,16 @@ const Maker = ({isSignup, setIsSignup, authServise, dataControl, loginedUID}) =>
 
     useEffect(onCheck, [isSignup]);
 
-    const [cards, setCards] = useState([
-            {
-                id: 1,
-                name: 'Chris',
-                email: 'abc@gmail.com',
-                color: 'black',
-                workplace: 'porche',
-                position: 'coder',
-                comments: '열심히 공부중',
-                img: default_logo,
-                imgFileName: 'no image',
-            },
-            {
-                id: 2,
-                name: '2Chris',
-                email: 'abc@gmail.com',
-                color: 'black',
-                workplace: 'porche',
-                position: 'coder',
-                comments: '열심히 공부중',
-                img: default_logo,
-                imgFileName: 'no image',
-            },
-            {
-                id: 3,
-                name: '3Chris',
-                email: 'abc@gmail.com',
-                color: 'black',
-                workplace: 'porche',
-                position: 'coder',
-                comments: '열심히 공부중',
-                img: default_logo,
-                imgFileName: 'no image',
-            },
-        ]
-    );
+    const [cards, setCards] = useState([]);
 
-    const getUserInfo = () => {
+    const updateUserInfo = () => {
          dataControl.readUserData(loginedUID,(res)=>setCards(res.data));
     }
 
-    useEffect(getUserInfo,[]);
-
+    useEffect(updateUserInfo,[]);
 
     return (
         <div className={styles.maker}>
-            <button onClick={getUserInfo}>11</button>
             <Header
                 dataControl={dataControl}
                 loginedUID={loginedUID}
@@ -77,6 +39,7 @@ const Maker = ({isSignup, setIsSignup, authServise, dataControl, loginedUID}) =>
             <div className={styles.container}>
                 <section className={styles.contents}>
                     <Cardmaker
+                        updateUserInfo={updateUserInfo}
                         cards={cards}
                         setCards={setCards}
                         dataControl={dataControl}

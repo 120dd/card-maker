@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import styles from './cardMakerContents.module.css';
 
-const CardMakerContent = ({card, cards, setCards, updateCard, dataControl}) => {
+const CardMakerContent = ({card, cards, setCards, updateCard, dataControl, loginedUID}) => {
     const [loading, setLoading] = useState(false);
     const nameRef = useRef();
     const workPlaceRef = useRef();
@@ -13,7 +13,7 @@ const CardMakerContent = ({card, cards, setCards, updateCard, dataControl}) => {
 
     const onDelete = (e) => {
         let newCards = cards.filter(data => data.id !== card.id);
-        setCards(newCards);
+        dataControl.writeUserData(loginedUID, newCards);
     }
 
     const onChange = (e) => {

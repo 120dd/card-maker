@@ -23,7 +23,6 @@ class DataControl {
 
         return await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData, config)
             .then(res => {
-                // console.log(res);
                 return res;
             })
             .catch(err => alert(err))
@@ -42,10 +41,9 @@ class DataControl {
         const userRef = ref(db, `users/${uid}`);
         onValue(userRef, (snapshot) => {
             const data = snapshot.val();
-            callback(data);
+            data && callback(data);
         });
     }
-
 
 }
 

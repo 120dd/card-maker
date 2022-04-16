@@ -3,20 +3,20 @@ import styles from "./cardmaker.module.css";
 import CardMakerContent from "../cardMakerContent/cardMakerContent";
 import AddForm from "../addForm/addForm";
 
-const Cardmaker = ({cards, setCards, dataControl, loginedUID}) => {
-    console.log(cards);
+const Cardmaker = ({cards, setCards, dataControl, loginedUID, updateUserInfo}) => {
 
     const addCard = (card) => {
         const newCards = [...cards, card]
-        setCards(newCards);
         dataControl.writeUserData(loginedUID, newCards);
+        updateUserInfo();
     }
 
     const updateCard = (card) => {
         const newCards = cards.map((item) => {
             return  item.id === card.id ? card : item;
         })
-        setCards(newCards);
+        dataControl.writeUserData(loginedUID, newCards);
+        updateUserInfo();
     }
 
     return (
@@ -32,11 +32,11 @@ const Cardmaker = ({cards, setCards, dataControl, loginedUID}) => {
                                 setCards={setCards}
                                 updateCard={updateCard}
                                 dataControl={dataControl}
+                                loginedUID={loginedUID}
                             />
                         )
                     }
                 )}
-                {/*<AddForm cards={cards} setCards={setCards} />*/}
                 <AddForm
                     loginedUID={loginedUID}
                     cards={cards}
